@@ -158,5 +158,28 @@ window.addEventListener("DOMContentLoaded", (event) => {
     //         console.log (day + "." + month + "." + year);
     //     }
     // }
-
+    var z = 5;
+    function MyFunc( x,  y, z)
+    {   
+        if (x !== undefined)
+            console.log(x);
+        if (y !== undefined)
+            console.log(y);
+        for(var i = 0; i < arguments.length; i++)
+        {
+            console.log(arguments[i]);
+        }
+        z = 10;
+    }
+    console.log("empty");
+    MyFunc();
+    console.log("1");
+    MyFunc(20);
+    console.log("2");
+    MyFunc("undefined",23);
+    console.log("3");
+    MyFunc(20,23,40);
+    console.log("4");
+    MyFunc(5645,4562,234234,6456);
+    console.log(z);
 });
