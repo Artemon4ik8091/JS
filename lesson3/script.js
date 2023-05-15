@@ -180,7 +180,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     {
         if (confirm("Число больше "+ Math.trunc((top+bottom)/2) +"?"))
         {
-            bottom = Math.trunc(top+bottom)/2+1;
+            bottom = Math.trunc((top+bottom)/2)+1;
         }
         else if (confirm("Число меньше "+ Math.trunc((top+bottom)/2) +"?"))
         {
