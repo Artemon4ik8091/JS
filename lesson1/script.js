@@ -38,7 +38,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     // var third = (number % 100) % 10;
     // console.log(number + " -> " + third+second+first);
 
-     var number = 573;
+    var number = 573;
     // console.log(number % 2 == 1 ? "нечетное" : "четное");
     console.log(['Even', 'Odd'][number * number % 2]);
 });
