@@ -111,4 +111,85 @@ window.addEventListener("DOMContentLoaded", (event) => {
     //     }            
     // }
     // console.log(prime);
+
+    // //dz7
+    // var number = prompt("Введите число");
+    // var left = prompt("Введите число сдвига");
+    // var massive = [];
+    // if (left > number.length)
+    //     left = left%number.length;    
+    // for (var i = left; i < number.length; i++)
+    // {
+    //     massive.push(number[i]);
+    // }
+    // for (var i = 0; i < left; i++)
+    // {
+    //     massive.push(number[i]);
+    // }
+    // console.log(massive);
+
+    //dz8
+    // var day = 0;
+    // var next = true;
+    // var text = "";
+    // do 
+    // {
+    //     ++day;
+    //     switch(day)
+    //     {
+    //         case 1: 
+    //             text = "This is понедельник. Дальше?";  
+    //             next = confirm(text);
+    //             break;
+    //         case 2: 
+    //             text = "This is понедельник 2. Дальше?";  
+    //             next = confirm(text);
+    //             break;
+    //         case 3: 
+    //             text = "This is понедельник 3. Дальше?";  
+    //             next = confirm(text);
+    //             break;
+    //         case 4: 
+    //             text = "This is понедельник 4. Дальше?";  
+    //             next = confirm(text);
+    //             break;
+    //         case 5: 
+    //             text = "This is понедельник 5. Дальше?";  
+    //             next = confirm(text);
+    //             break;
+    //         case 6: 
+    //             text = "This is понедельник 6. Дальше?";  
+    //             next = confirm(text);
+    //             break;
+    //         case 7: 
+    //             text = "This is понедельник 7. Дальше?";  
+    //             next = confirm(text);
+    //             if (next) day = 0;
+    //             break;           
+    //     }
+    // }
+    // while(next)
+
+    //dz10
+
+    alert("Загадай число from 0 to 100");
+    var answer = false;
+    var bottom = 0;
+    var top = 100;
+    while (!answer)
+    {
+        if (confirm("Число больше "+ Math.trunc((top+bottom)/2) +"?"))
+        {
+            bottom = Math.trunc(top+bottom)/2+1;
+        }
+        else if (confirm("Число меньше "+ Math.trunc((top+bottom)/2) +"?"))
+        {
+            top = Math.trunc((top+bottom)/2);
+        }
+        else 
+        {
+            alert("Ваше число "+Math.trunc((top+bottom)/2));
+            answer = true;
+        }
+    }
 });
