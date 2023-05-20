@@ -40,8 +40,22 @@ window.addEventListener("DOMContentLoaded", (event) => {
     // console.log(RemainderOfTheDivision(274586, 387));
 
     // 7. Написать функцию, которая принимает от 1 до 5 чисел и возвращает их сумму.
-    Summator (20);
-    Summator (20,20,20,20,20);
+    // console.log(Summator (20));
+    // console.log(Summator (20,20,20,20,20));
+
+    // 8. Написать функцию, которая принимает от 1 до 5 чисел и возвращает большее из них.
+    // console.log(MaxNumber(20,30,40,10,0));
+    // console.log(MaxNumber(-20,-30,-40,-10,-5));
+    // 9. Написать функцию, которая выводит все четные или нечетные числа, в указанном пользователем диапазоне. 
+    // Какие числа выводить, определяется третьим параметром типа bool (true – четные, false – нечетные).
+    // OddEvenNumbers(20,50,true);
+    // OddEvenNumbers(20,50);
+
+    // 10. Написать функцию, которая принимает дату (день, месяц, год) и возвращает дату следующего дня в виде строки «дд.мм.гггг». 
+    // Проверку на високосный год желательно написать отдельной функцией.
+
+    // console.log(NextDayDate(20,05,2032));
+    // console.log(NextDayDate(28,2,2028));
 });
 
 function LessNumber(number1,number2) {  //Task1
@@ -72,7 +86,7 @@ function Calculate(number1, number2, sign) { //Task3
     }
 }
 
-function IsPrimeNumber(number) {
+function IsPrimeNumber(number) { //Task4
     if (number < 2) return "InvalidRangeException";
     if (number === undefined) return "BadArgumentFunctionException";
     for (let i = 2; i < number; i++)
@@ -83,7 +97,7 @@ function IsPrimeNumber(number) {
     return true;
 }
 
-function MultiplyTable (number) {
+function MultiplyTable (number) { //Task5
     for (let i = 1; i < 10; i++)
     {
         console.log(`${number} * ${i} = ` +  number * i);
@@ -91,7 +105,7 @@ function MultiplyTable (number) {
     console.log("");
 }
 
-function RemainderOfTheDivision (number, divider) { 
+function RemainderOfTheDivision (number, divider) {  //Task6
     if (divider == 0 || number == 0) return "badrequest";
     if (divider > number) return number + " bad";
     let remainder = Math.trunc(number / divider); 
@@ -99,7 +113,111 @@ function RemainderOfTheDivision (number, divider) {
     return remainder;
 }
 
-function Summator()
-{
+function Summator() { //Task7
+    if (arguments.length >= 1 && arguments.length <=5)
+    {
+        let sum = 0;
+        for(let i = 0; i < arguments.length; i++ )
+        {
+            sum += arguments[i];
+        }
+        return sum;
+    }
+    return 0;    
+}
 
+function MaxNumber() { //Task8
+    let max = 0;
+    if (arguments.length >= 1 && arguments.length <= 5)
+    {        
+        max = arguments[0];
+        for(let i = 0; i < arguments.length; i++ )
+        {
+            if(arguments[i] > max)
+                max = arguments[i];
+        }        
+    }
+    return max;   
+}
+
+function OddEvenNumbers(startRange, endRange, even = false) { //Task9
+    for(let i = startRange; i <= endRange; i++)
+    {
+        if (even)
+        {
+            if (i % 2 == 0) 
+                console.log(i);
+        }
+        else
+        {
+            if (i % 2 != 0) 
+                console.log(i);
+        }
+    }
+}
+
+function NextDayDate(day,month,year) { //Task10
+    let errorDate = false;
+    let longMonth = [1,3,5,7,8,10,12];
+    let shortMonth = [4,6,9,11];
+    let leapYear = false;
+    
+    errorDate = year > 0 && year <= 9998 ? false : true;
+    if (!errorDate)
+    {        
+        leapYear = IsLeapYear(year);
+    }
+    console.log(leapYear);
+    errorDate = month > 0 && month <= 12 ? false : true;
+    if (!errorDate) 
+    {   
+        errorDate = day > 0 && day <= 31 && longMonth.includes(month) ? false : true;
+        errorDate = day > 0 && day <= 30 && shortMonth.includes(month) ? false : true;
+        if (leapYear)
+        {
+            errorDate = day > 0 && day <= 29 && month == 2  ? false : true;
+        }
+        else
+        {
+            errorDate = day > 0 && day <= 28 && month == 2 ? false : true;
+        }     
+    }
+
+    day = day + 1;
+
+    if (day <= 31 && longMonth.includes(month) || 
+        day <= 30 && shortMonth.includes(month) || 
+        day <= 29 && month == 2 && leapYear ||  
+        day <= 28 && month == 2)
+        return day + "." + month + "." + year;
+    else
+    {
+        day = 1;
+        month = month + 1;
+        if (month <= 12)
+        {
+            return day + "." + month + "." + year;
+        }
+        else
+        {
+            month = 1;
+            year++;
+            return day + "." + month + "." + year;
+        }
+    }
+}
+
+function IsLeapYear(year) { //Task10 InnerFunction
+    let leapYear = false;
+    if (year % 4 == 0) {
+        if (year % 100 == 0) {
+            if (year % 400 == 0) {
+                leapYear = true;
+            }                
+        }
+        else {
+            leapYear = true;
+        }            
+    }
+    return leapYear;
 }
