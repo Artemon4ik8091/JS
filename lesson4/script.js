@@ -56,6 +56,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     // console.log(NextDayDate(20,05,2032));
     // console.log(NextDayDate(28,2,2028));
+
+    // console.log(ConcatNumbers(1,2,3)); //DZ3
+    // console.log(IsSuperNumber(6)); //DZ5
+    // console.log(IsSuperNumber(28));
+    // console.log(IsSuperNumber(496));
 });
 
 function LessNumber(number1,number2) {  //Task1
@@ -220,4 +225,27 @@ function IsLeapYear(year) { //Task10 InnerFunction
         }            
     }
     return leapYear;
+}
+
+
+function ConcatNumbers (n1,n2,n3) //DZ 3
+{
+    return Number(n1 + "" + n2 + "" + n3);
+}
+
+function IsSuperNumber(number) {
+    let divisionsMassive = [];
+    let sum = 0;
+    for (let i = 1; i < number; i++) {
+        if (number % i == 0) {
+            divisionsMassive.push(i);
+        }
+    }
+    for (let i = 0; i < divisionsMassive.length; i++) {
+        sum += divisionsMassive[i];
+    }
+    if (number == sum) {
+        return true;
+    }    
+    return false;
 }
