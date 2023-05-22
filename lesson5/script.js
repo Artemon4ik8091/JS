@@ -7,6 +7,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
     // console.log(PairRoundBrackets(4));  //Task5
     // console.log(NumberPow(2,3)); //DZ1
     // console.log(MaxDivider(125,625)); //DZ2
+    // console.log(FindMaxDigit(264736294)); // DZ3
+    // console.log(GetMassivePrimeMultiply(567754));
 });
 
 function FactorialRecursive(number, result = 1) //Task1
@@ -87,4 +89,32 @@ function MaxDivider(number1, number2, start = 1, limit = 0, divider = 1) {  //DZ
     if (start > limit) return divider;
     if (number1 % start == 0 && number2 % start == 0) divider = start;    
     return MaxDivider(number1, number2, ++start,limit, divider);
+}
+
+function FindMaxDigit(number)  // DZ3
+{
+    if (number == 0) return 0;
+    let digit = number % 10;
+    let recDigit = FindMaxDigit(Math.trunc(number/10));
+    if (recDigit > digit) {
+        return recDigit;
+    }
+    else {
+        return digit;
+    }
+}
+
+function GetMassivePrimeMultiply(number)  //DZ5
+{
+    prime = true;
+    for (let i = 2; i < number; i++)
+    {
+        if(number % i == 0)
+        {
+            prime = false;
+            return i + " * " + GetMassivePrimeMultiply(number / i);
+        }
+    }
+    if(prime)
+        return number;
 }
