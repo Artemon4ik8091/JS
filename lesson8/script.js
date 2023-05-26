@@ -16,6 +16,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
     // console.log(StringIsPalindrom("abcba"));  //task6
     // console.log(StringIsPalindrom("abcggcba"));
     // console.log(StringIsPalindrom("gfljskljgol"));
+
+    // console.log(WordsCount("Должно быть 4 слова")); //task7
+
+    // console.log(MaxWordLength("Должно быть 4 слова23423423423")); //task8
+    // console.log(AverageWordsLength("Должно быть 4 слова 23423423423")); //task9
+
+    // SymbolStats("jldkasghewjehj owghpouwgh piwgh[iw ehpqew ghip",'o');
 });
 function CompareStrings(string1,string2)  //task1
 {
@@ -71,4 +78,30 @@ function StringIsPalindrom(string) {  //task6
         }
     }
     return true;
+}
+function WordsCount(string) {  //task7
+    return string.split(" ").length;
+}
+function MaxWordLength(string){ //task8
+    words = string.split(" ");
+    return words.sort(CompareStrings)[words.length - 1];
+}
+function AverageWordsLength(string){ //task9
+    let sum = 0;
+    words = string.split(" ");
+    words.forEach(s => sum += s.length);
+    return sum/words.length;
+}
+function SymbolStats(string, char){ //task10
+    let indexes = [];
+    let count = 0;
+    [...string].forEach(function (s, index) {
+        if (s === char) { 
+            count++; 
+            indexes.push(index);
+        }
+    });
+    console.log("Количество символов:" + count);
+    console.log("Индексы символа в строке:");
+    indexes.forEach(i => console.log(i));
 }
