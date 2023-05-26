@@ -61,6 +61,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
     // console.log(IsSuperNumber(6)); //DZ5
     // console.log(IsSuperNumber(28));
     // console.log(IsSuperNumber(496));
+
+    console.log(TimeToScreen(12,23,35));
+    console.log(TimeToScreen(12));
+    console.log(TimeToScreen(25));
 });
 
 function LessNumber(number1,number2) {  //Task1
@@ -248,4 +252,17 @@ function IsSuperNumber(number) {
         return true;
     }    
     return false;
+}
+
+
+function TimeToScreen(hour,minutes, seconds) {
+    if (hour === undefined)
+        return "Часы обязательны.";
+    if(hour < 0 || hour > 24)
+    {
+        return "Часы должны быть в диапазоне от 0 до 24.";
+    }
+    minutes = minutes === undefined ? "00" : minutes;
+    seconds = seconds === undefined ? "00" : seconds;
+    return hour + ":" + minutes  + ":" + seconds;
 }
