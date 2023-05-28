@@ -31,8 +31,23 @@ window.addEventListener("DOMContentLoaded", (event) => {
     // var docPrint = new PrintMachine(16,"rgb(255,0,0)","Roboto");  // task1
     // docPrint.print("Текст красный из JS");
 
-    var article = new Article("Мой заголовок","Небольшой текст моей статьи", ["custom","news"],new Date(1680000000000)); //task2
-    article.print();
+    var article = new Article("Мой заголовок1","Небольшой текст моей статьи 1 ", ["custom","news"],new Date(1680000000000)); //task2
+    var article2 = new Article("Мой заголовок2","Небольшой текст моей статьи 2 ", ["old","news"],new Date(1270000000000)); //task2
+    var article3 = new Article("Мой заголовок3","Небольшой текст моей статьи 3 ", ["fresh","news"],new Date(1360000000000)); //task2
+    var article4 = new Article("Мой заголовок4","Небольшой текст моей статьи 4 ", ["old","news"],new Date(1450000000000)); //task2
+    var article5 = new Article("Мой заголовок5","Небольшой текст моей статьи 5 ", ["fruit","news"],new Date(1540000000000)); //task2
+    //article.print();
+
+    var news  = new News([article,article2,article3,article4]);  //task3
+    console.log(news.length);
+    //news.printAllNews();
+    news.AddNews(article5);
+    news.DeleteNews("Мой заголовок3");
+    //news.printAllNews();
+    news.Sort();
+    //news.printAllNews();
+    var oldNews = new News(news.SearchByTag("old"));
+    oldNews.printAllNews();
 });
 // function HelloWorld() {
 //     alert("Hello world!");
@@ -108,5 +123,56 @@ class Article {  //task2
         this.outputString += "</p>";
         this.outputString += "</div>";
         document.write(this.outputString);
+    }
+}
+
+class News {  //task3
+    constructor(articles)
+    {
+        this.articles = articles;
+    }
+    get length() {
+        return this.articles.length;
+    }
+    printAllNews() {
+        this.articles.forEach((article) => {
+            article.print();
+        });
+    }
+    AddNews(article) {
+        this.articles.push(article);
+    }
+    DeleteNews(header) {
+        let index = -1;
+        for(let i = 0; i < this.articles.length; i++) {
+            if(this.articles[i].header == header) {
+                index = i;
+                break;
+            }
+        }
+        if(index >= 0) {
+            this.articles.splice(index,1);
+        }        
+    }
+    Sort() {
+        this.articles.sort((a,b) => {
+            if(a.date > b.date) {
+                return -1;
+            }
+            if(a.date < b.date) {
+                return 1;
+            }
+            if(a.date === b.date) {
+                return 0;
+            }
+        });
+    }
+    SearchByTag(tag) {
+        let newArticles = [];
+        this.articles.forEach((article) => {
+            if(article.tags.includes(tag))
+                newArticles.push(article);
+        });
+        return newArticles;
     }
 }
